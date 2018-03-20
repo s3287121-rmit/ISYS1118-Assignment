@@ -9,8 +9,10 @@ package isys1118.assignment.database;
  * be used to properly connect to a database and get / set information at a
  * later date.</p>
  * 
- * @author Luke Larobina
- * @student_id s3287121
+ * <p><b>Creator:</b><br />
+ * Name: Luke Larobina<br />
+ * Student Number: s3287121<br />
+ * Email: s3287121@student.rmit.edu.au</p>
  *
  */
 public class Database
@@ -23,7 +25,8 @@ public class Database
     private static Database db;
     
     /**
-     * Creates a database connection using a singleton method.
+     * Creates a database connection using a singleton method. This needs to be
+     * called before any database functions can work.
      */
     public static void connectToDatabase()
     {
@@ -62,9 +65,38 @@ public class Database
         }
     }
     
-    public static Table getCasualEmployee()
+    /**
+     * <p>Gets a {@link #Table} for testing purposes.</p>
+     * <p>Note that all test tables are 5 columns long and all values are
+     * strings. Please only add strings to the rows. Nothing else will work.
+     * </p>
+     * @return A test {@link #Table}
+     */
+    public static Table getTestTable()
     {
-        return null;
+        int status = databaseConnected();
+        if (status == DATABASE_CONNECTED)
+        {
+            return db.createDummyTable();
+        }
+        else if (status == DATABASE_NULL)
+        {
+            // TODO create DB Error
+            throw new Error("Cannot get table. " + 
+                    "Database connection not established.");
+        }
+        else if (status == DATABASE_NOT_CONNECTED)
+        {
+            // TODO create DB Error
+            throw new Error("Cannot get table. " + 
+                    "Database connection has been terminated.");
+        }
+        else
+        {
+            // TODO create DB Error
+            throw new Error("Cannot get table. " + 
+                    "Unexpected error occurred.");
+        }
     }
     
     // class methods
@@ -82,6 +114,16 @@ public class Database
     {
         // test result
         return true;
+    }
+    
+    /**
+     * Creates a table for testing.
+     * @return
+     */
+    private Table createDummyTable()
+    {
+        Table dummy = new Table();
+        return dummy;
     }
     
 }
