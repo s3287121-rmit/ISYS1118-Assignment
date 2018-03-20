@@ -30,7 +30,7 @@ public class Database
      */
     public static void connectToDatabase()
     {
-        if (db != null)
+        if (db == null)
         {
             db = new Database();
         }
@@ -104,7 +104,7 @@ public class Database
     /**
      * Constructs Database. Empty constructor.
      */
-    protected Database() {}
+     private Database() {}
     
     /**
      * Tests to see if the current database is connected.

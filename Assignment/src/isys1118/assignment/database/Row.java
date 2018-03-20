@@ -45,6 +45,18 @@ public final class Row
     }
     
     /**
+     * Constructor for empty row.
+     * @param parent
+     * @param data
+     */
+    protected Row(Table parent)
+    {
+        fromTable = parent;
+        length = fromTable.numColumns;
+        this.data = new ArrayList<Object>(length);
+    }
+    
+    /**
      * Sets the data of the entire row to the values given in {@code data}. The
      * length and types of {@code data} need to match those of the table's
      * schema.
@@ -57,7 +69,16 @@ public final class Row
             // TODO create DB Error
             throw new Error("Attempting to add data of different length.");
         }
-        this.data.addAll(data);
+        if (fromTable.checkIfDataFits(data))
+        {
+            this.data.clear();
+            this.data.addAll(data);
+        }
+        else
+        {
+            // TODO create DB Error
+            throw new Error("Data did not match schema.");
+        }
     }
 
     /**
@@ -73,9 +94,18 @@ public final class Row
             // TODO create DB Error
             throw new Error("Attempting to add data of different length.");
         }
-        for (Object o : data)
+        if (fromTable.checkIfDataFits(data))
         {
-            this.data.add(o);
+            this.data.clear();
+            for (Object o : data)
+            {
+                this.data.add(o);
+            }
+        }
+        else
+        {
+            // TODO create DB Error
+            throw new Error("Data did not match schema.");
         }
     }
 

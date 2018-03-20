@@ -229,6 +229,23 @@ public class Table
     }
     
     /**
+     * <p>Creates a new row for this table. The Row is linked to the table and
+     * must comply to the table's schema.</p>
+     * <p>This row is initialised with now data, and so the data needs to be
+     * added to it later on</p>
+     * <p>All changes made to the new row will be updated to the database
+     * once the table is committed.</p>
+     * @param data
+     * @return
+     */
+    public Row createNewRow()
+    {
+        Row r = new Row(this);
+        rows.add(r);
+        return r;
+    }
+    
+    /**
      * <p>Gets a row from the database using the given string query.</p>
      * <p>All changes made to the returned row will be updated to the database
      * once the table is committed.</p>
@@ -257,6 +274,37 @@ public class Table
     {
         System.out.println("Changes successfully committed.");
         return true;
+    }
+    
+    /**
+     * Returns the length of the table (number of columns per row).
+     * @return
+     */
+    public int getLength()
+    {
+        return numColumns;
+    }
+    
+    /**
+     * Returns a list of all column names, in order.
+     * @return
+     */
+    public ArrayList<String> getColumnNames()
+    {
+        ArrayList<String> names = new ArrayList<String>(numColumns);
+        names.addAll(columnNames);
+        return names;
+    }
+    
+    /**
+     * Returns a list of all column data types, in order.
+     * @return
+     */
+    public ArrayList<String> getColumnTypes()
+    {
+        ArrayList<String> types = new ArrayList<String>(numColumns);
+        types.addAll(columnTypes);
+        return types;
     }
     
     private String createRandomString(int length)
