@@ -1,6 +1,7 @@
 package isys1118.assignment.database;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * <p>Represents a table of rows, used by the database.</p>
@@ -264,6 +265,34 @@ public class Table
         Row dummy = new Row(this, data);
         rows.add(dummy);
         return dummy;
+    }
+    
+    /**
+     * <p>Gets all Rows from the database using the given string query.</p>
+     * <p>All changes made to the returned rows will be updated to the database
+     * once the table is committed.</p>
+     * <p><b>NOTE: this only returns test rows for now. String is not required.
+     * Just pass null.</b></p>
+     * @param query
+     * @return 
+     */
+    public Row[] getRowsFromTable(String query)
+    {
+        int end = (new Random()).nextInt(3);
+        Row[] allDummies = new Row[2 + end];
+        for (int j = 0; j < 2 + end; j++)
+        {
+            Object[] data = new Object[numColumns];
+            for (int i = 0; i < data.length; i++)
+            {
+                data[i] = createRandomString((int) (6 + Math.random() * 6));
+            }
+            Row dummy = new Row(this, data);
+            rows.add(dummy);
+            allDummies[j] = dummy;
+        }
+        
+        return allDummies;
     }
     
     /**
