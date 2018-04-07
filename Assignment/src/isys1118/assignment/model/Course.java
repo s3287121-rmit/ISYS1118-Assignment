@@ -30,5 +30,10 @@ public class Course
 	{
 		this.courseCode = courseCode;
 	}
+	
+	public Course getCourseClone()
+	{
+	    return new Course(name, courseCode);
+	}
 
 }

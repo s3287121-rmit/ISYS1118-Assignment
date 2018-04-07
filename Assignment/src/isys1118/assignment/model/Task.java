@@ -56,4 +56,9 @@ public class Task
 	{
 		this.time = time;
 	}
+	
+	public Task cloneTask()
+	{
+	    return new Task(course.getCourseClone(), room, taskType, day, time);
+	}
 }

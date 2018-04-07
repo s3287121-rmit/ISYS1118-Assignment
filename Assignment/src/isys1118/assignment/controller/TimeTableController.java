@@ -6,16 +6,17 @@ import isys1118.assignment.database.Table;
 import isys1118.assignment.error.DatabaseNotConnectedException;
 import isys1118.assignment.model.Course;
 import isys1118.assignment.model.Task;
-import isys1118.assignment.model.TaskList;
+import isys1118.assignment.model.TimeTable;
 import isys1118.assignment.user.User;
-import isys1118.assignment.view.TaskListView;
+import isys1118.assignment.view.TimeTableView;
 
-public class TaskListController
+public class TimeTableController
 {
-    private TaskListView view;
-    private TaskList model;
     
-    public TaskListController(User user)
+    private TimeTable model;
+    private TimeTableView view;
+    
+    public TimeTableController(User user)
     {
         loadData(user);
     }
@@ -38,7 +39,7 @@ public class TaskListController
             }
             
             // create model
-            model = new TaskList();
+            model = new TimeTable();
             Row[] rows = tableTask.getRowsFromTable("permission=" + user.getPermissions() + "&user_id=" + user.getUsername());
             for (Row rowTask : rows)
             {
@@ -56,8 +57,7 @@ public class TaskListController
             }
             
             // create view
-            view = new TaskListView();
-            
+            view = new TimeTableView();
         }
         catch (DatabaseNotConnectedException e)
         {
@@ -67,6 +67,7 @@ public class TaskListController
     
     public void view()
     {
-        view.show(model.cloneTasks());
+        view.show(model.getTaskItems());
     }
+    
 }

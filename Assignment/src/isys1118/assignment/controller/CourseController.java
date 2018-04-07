@@ -24,7 +24,7 @@ public class CourseController
         {
             // get table, check for DB connection
             Table table;
-            if (Database.databaseConnected() != Database.DATABASE_CONNECTED)
+            if (Database.databaseConnected() == Database.DATABASE_CONNECTED)
             {
                 table = Database.getTestTable();
             }
@@ -51,7 +51,7 @@ public class CourseController
     
     public void view()
     {
-        view.show();
+        view.show(model.getCourseClone());
     }
     
 }

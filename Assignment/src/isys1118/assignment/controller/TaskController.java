@@ -26,7 +26,7 @@ public class TaskController
             // get table, check for DB connection
             Table tableTask;
             Table tableCourse;
-            if (Database.databaseConnected() != Database.DATABASE_CONNECTED)
+            if (Database.databaseConnected() == Database.DATABASE_CONNECTED)
             {
                 tableTask = Database.getTestTable();
                 tableCourse = Database.getTestTable();
@@ -61,7 +61,7 @@ public class TaskController
     
     public void view()
     {
-        view.show();
+        view.show(model.cloneTask());
     }
     
 }

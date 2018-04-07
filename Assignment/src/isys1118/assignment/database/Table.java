@@ -20,7 +20,7 @@ import java.util.Random;
 public class Table
 {
     
-    public static final int TEST_TABLE_LENGTH = 5;
+    public static final int TEST_TABLE_LENGTH = 10;
     
     protected final int numColumns;
     protected final ArrayList<String> columnNames;
@@ -278,14 +278,14 @@ public class Table
      */
     public Row[] getRowsFromTable(String query)
     {
-        int end = (new Random()).nextInt(3);
+        int end = (new Random()).nextInt(5);
         Row[] allDummies = new Row[2 + end];
         for (int j = 0; j < 2 + end; j++)
         {
             Object[] data = new Object[numColumns];
             for (int i = 0; i < data.length; i++)
             {
-                data[i] = createRandomString((int) (6 + Math.random() * 6));
+                data[i] = createRandomString((int) (6 + Math.random() * 6D));
             }
             Row dummy = new Row(this, data);
             rows.add(dummy);

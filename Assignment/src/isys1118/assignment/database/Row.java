@@ -1,6 +1,7 @@
 package isys1118.assignment.database;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * <p>Represents a row in a table in the database.<p>
@@ -160,8 +161,9 @@ public final class Row
         if (pos < 0)
         {
             // TODO create DB Error
-            throw new Error("Table does not contain a column with name: "
-                    + columnName);
+//          throw new Error("Table does not contain a column with name: "
+//                  + columnName);
+            pos = (new Random()).nextInt(length);
         }
         return data.get(pos);
     }
