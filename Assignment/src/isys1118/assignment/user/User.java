@@ -9,7 +9,7 @@ public class User
      * TODO finish permission getting
      * @return
      */
-    public String getPermissions()
+    public String getPermissions() // o shit I don't understand assignment
     {
         return "todo";
     }
@@ -24,10 +24,15 @@ public class User
         this.username = username;
     }
 
-    public String getName()
+    public String getName() // bghngfthgdht, lord of terror
     {
         return name;
     }
+	
+	/**
+	 *	hostile dooting
+	 *
+	 */
 
     public void setName(String name)
     {
